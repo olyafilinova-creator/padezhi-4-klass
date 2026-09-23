@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Падежи имени существительного — 4 класс</title>
+<style>
+  :root{
+    --bg:#fff8fb;
+    --paper:#ffffff;
+    --ink:#2f2b2d;
+    --muted:#756a70;
+    --accent:#ff4f91;
+    --accent-2:#ff86b4;
+    --accent-3:#ffe2ed;
+    --accent-4:#fff0f6;
+    --warm:#fff7e8;
+    --ok:#2f8b57;
+    --ok-bg:#ecf8f1;
+    --warn:#a95b24;
+    --warn-bg:#fff2e8;
+    --bad:#b9475f;
+    --bad-bg:#fff0f3;
+    --border:#f1d6e1;
+    --shadow:0 14px 38px rgba(112,47,74,.10);
+    --radius:22px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:var(--ink);background:linear-gradient(180deg,#fff8fb 0%,#fffdf9 100%)}
+  button,input{font:inherit}
+  button{cursor:pointer}
+  .app{min-height:100vh;display:flex;flex-direction:column}
+  .topbar{position:sticky;top:0;z-index:20;background:rgba(255,248,251,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .topbar-inner{max-width:1100px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;gap:12px}
+  .brand{font-weight:800;letter-spacing:.1px;display:flex;align-items:center;gap:9px;white-space:nowrap}
+  .brand-badge{width:34px;height:34px;border-radius:12px;background:var(--accent);color:#fff;display:grid;place-items:center;font-weight:900;box-shadow:0 6px 18px rgba(255,79,145,.25)}
+  .spacer{flex:1}
+  .ghost-btn,.icon-btn{border:1px solid var(--border);background:#fff;color:var(--ink);border-radius:14px;padding:9px 12px;min-height:42px}
+  .ghost-btn:hover,.icon-btn:hover{background:var(--accent-4)}
+  .icon-btn{width:44px;padding:0;display:grid;place-items:center;font-size:19px}
+  .student-chip{background:#fff;border:1px solid var(--border);border-radius:999px;padding:8px 12px;font-weight:700;max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  main{width:100%;max-width:1100px;margin:0 auto;padding:26px 18px 44px;flex:1}
+  .screen{display:none;animation:fade .22s ease}
+  .screen.active{display:block}
+  @keyframes fade{from{opacity:.2;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .hero{background:var(--paper);border:1px solid var(--border);border-radius:32px;box-shadow:var(--shadow);padding:34px;display:grid;grid-template-columns:1.25fr .75fr;gap:28px;align-items:center}
+  .eyebrow{display:inline-block;background:var(--accent-3);color:#913555;border-radius:999px;padding:7px 11px;font-size:13px;font-weight:800;margin-bottom:12px}
+  h1,h2,h3{margin:0 0 12px;line-height:1.15}
+  h1{font-size:clamp(32px,5vw,54px);letter-spacing:-1.2px}
+  h2{font-size:clamp(26px,4vw,40px);letter-spacing:-.5px}
+  h3{font-size:20px}
+  p{line-height:1.55}
+  .lead{font-size:18px;color:var(--muted);max-width:700px}
+  .start-card{background:linear-gradient(160deg,var(--accent-4),#fff);border:1px solid var(--border);border-radius:26px;padding:24px}
+  .name-input{width:100%;padding:15px 16px;border:1.5px solid #e7c4d2;border-radius:16px;background:#fff;outline:none;font-size:18px;margin:10px 0 10px}
+  .name-input:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(255,79,145,.09)}
+  .primary{border:0;background:var(--accent);color:#fff;border-radius:16px;padding:14px 18px;font-weight:800;min-height:48px;box-shadow:0 9px 22px rgba(255,79,145,.22)}
+  .primary:hover{filter:brightness(.98);transform:translateY(-1px)}
+  .primary:disabled{opacity:.45;cursor:not-allowed;transform:none}
+  .secondary{border:1px solid var(--border);background:#fff;color:var(--ink);border-radius:16px;padding:13px 17px;font-weight:750;min-height:46px}
+  .secondary:hover{background:var(--accent-4)}
+  .error-text{color:var(--bad);font-size:14px;min-height:20px;margin-top:4px}
+  .illustration{min-height:270px;border-radius:28px;background:radial-gradient(circle at 25% 20%,#fff 0,rgba(255,255,255,.5) 26%,transparent 27%),linear-gradient(145deg,#ffe4ee,#fff0da);display:grid;place-items:center;overflow:hidden;position:relative}
+  .illustration .big{font-size:112px;filter:drop-shadow(0 14px 15px rgba(100,55,70,.12))}
+  .illustration .sticker{position:absolute;background:#fff;border:1px solid var(--border);border-radius:16px;padding:9px 12px;font-weight:800;box-shadow:var(--shadow)}
+  .illustration .s1{top:28px;right:24px;transform:rotate(4deg)}
+  .illustration .s2{left:24px;bottom:30px;transform:rotate(-5deg)}
+  .section-head{display:flex;gap:14px;align-items:flex-end;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap}
+  .section-sub{color:var(--muted);margin:0}
+  .menu-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+  .block-card{background:#fff;border:1px solid var(--border);border-radius:22px;padding:19px;box-shadow:0 9px 26px rgba(112,47,74,.06);display:flex;flex-direction:column;gap:10px;min-height:190px;transition:.2s}
+  .block-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:#e8b9cc}
+  .block-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+  .block-icon{font-size:34px}
+  .case-chip{background:var(--accent-3);color:#933455;padding:6px 9px;border-radius:999px;font-size:12px;font-weight:900}
+  .block-card h3{margin-bottom:3px;font-size:20px}
+  .block-desc{font-size:14px;color:var(--muted);flex:1}
+  .status{font-size:13px;font-weight:800;color:#8d6474}
+  .status.done{color:var(--ok)}
+  .block-action{margin-top:5px;width:100%}
+  .trainer-shell{background:#fff;border:1px solid var(--border);border-radius:28px;box-shadow:var(--shadow);overflow:hidden}
+  .trainer-head{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .trainer-title{font-weight:900;font-size:20px}
+  .progress-wrap{flex:1;min-width:180px}
+  .progress-meta{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:var(--muted);margin-bottom:6px}
+  .progress{height:10px;background:#f7e7ed;border-radius:999px;overflow:hidden}
+  .progress > div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));transition:width .25s ease}
+  .trainer-body{padding:26px;min-height:520px}
+  .passport{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+  .passport-card{border:1px solid var(--border);border-radius:20px;padding:18px;background:#fffafd}
+  .passport-card strong{display:block;font-size:13px;color:#9b667a;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
+  .passport-card span{font-size:20px;font-weight:900}
+  .passport-card.full{grid-column:1/-1}
+  .note{border:1px solid #f1d6b9;background:var(--warm);border-radius:18px;padding:14px 16px;margin-top:15px;line-height:1.45}
+  .task-kicker{font-size:13px;text-transform:uppercase;letter-spacing:.6px;color:#a1687f;font-weight:900;margin-bottom:8px}
+  .task-question{font-size:clamp(22px,3.7vw,34px);font-weight:900;line-height:1.25;margin:6px 0 22px}
+  .task-context{font-size:18px;background:#fff8fb;border:1px solid var(--border);padding:13px 15px;border-radius:16px;margin:0 0 18px;line-height:1.5}
+  .options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .option{min-height:62px;border:1.5px solid #e8ccd7;background:#fff;border-radius:17px;padding:13px 16px;text-align:left;font-weight:800;color:var(--ink);transition:.14s}
+  .option:hover:not(:disabled){border-color:var(--accent);background:#fff7fa;transform:translateY(-1px)}
+  .option.correct{border-color:#80c69c;background:var(--ok-bg);color:#246c45}
+  .option.wrong{border-color:#e1a1af;background:var(--bad-bg);color:#983c50}
+  .option:disabled{cursor:default}
+  .feedback{margin-top:16px;border-radius:16px;padding:13px 15px;display:none;line-height:1.45}
+  .feedback.show{display:block}
+  .feedback.ok{background:var(--ok-bg);border:1px solid #bce2ca;color:#246c45}
+  .feedback.bad{background:var(--bad-bg);border:1px solid #ecc5ce;color:#91384b}
+  .feedback.info{background:var(--warm);border:1px solid #f0d9bb;color:#7e4b28}
+  .task-tools{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:22px;flex-wrap:wrap}
+  .tool-left,.tool-right{display:flex;gap:10px;flex-wrap:wrap}
+  .hint-box,.fox-box{display:none;margin-top:14px;border-radius:18px;padding:16px}
+  .hint-box.show,.fox-box.show{display:block}
+  .hint-box{background:#fff7e8;border:1px solid #f1d4ad}
+  .fox-box{background:#fff2ea;border:1px solid #efc7ad;position:relative;padding-left:76px;min-height:70px}
+  .fox-face{position:absolute;left:16px;top:11px;font-size:45px}
+  .fox-rule{display:flex;gap:12px;flex-wrap:wrap;margin-top:9px}
+  .fox-pill{background:#fff;border:1px solid #efc7ad;border-radius:999px;padding:7px 11px;font-weight:900}
+  .summary{display:grid;grid-template-columns:1.15fr .85fr;gap:20px}
+  .summary-card{border:1px solid var(--border);border-radius:22px;padding:20px;background:#fffafd}
+  .kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}
+  .kpi{background:#fff;border:1px solid var(--border);border-radius:18px;padding:15px}
+  .kpi strong{display:block;font-size:28px;margin-bottom:4px}
+  .kpi span{color:var(--muted);font-size:13px;font-weight:700}
+  .send-status{margin-top:12px;font-size:13px;color:var(--muted)}
+  .summary-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .tips-list{margin:8px 0 0;padding-left:20px;line-height:1.6}
+  .mini-tag{display:inline-block;background:#fff0d8;color:#8b582c;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:900;margin-left:7px}
+  .author-line{margin:8px 0 18px;color:#7e6972;font-size:14px}
+  .author-line strong{color:#5d4650}
+  .footer-note{text-align:center;color:#9a858e;font-size:12px;padding:20px}
+  .hidden{display:none!important}
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr}.menu-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.summary{grid-template-columns:1fr}.illustration{min-height:220px}.passport{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:600px){
+    .topbar-inner{padding:9px 10px}.brand span:last-child{display:none}.student-chip{max-width:130px}.ghost-btn{padding:8px 10px}.hero{padding:22px;border-radius:24px}main{padding:16px 10px 34px}.menu-grid{grid-template-columns:1fr}.trainer-body{padding:18px 14px;min-height:500px}.trainer-head{padding:14px}.options{grid-template-columns:1fr}.passport{grid-template-columns:1fr}.passport-card.full{grid-column:auto}.task-tools{align-items:stretch}.tool-left,.tool-right{width:100%}.tool-left button,.tool-right button{flex:1}.kpi-grid{grid-template-columns:1fr 1fr}.student-chip{font-size:13px}.summary-actions button{flex:1}.fox-box{padding-left:66px}.fox-face{font-size:40px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><div class="brand-badge">П</div><span>Падежи · 4 класс</span></div>
+      <div class="spacer"></div>
+      <div id="studentChip" class="student-chip hidden"></div>
+      <button id="menuBtn" class="ghost-btn hidden" type="button">Все падежи</button>
+      <button id="soundBtn" class="icon-btn" type="button" aria-label="Звук">🔊</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="startScreen" class="screen active">
+      <div class="hero">
+        <div>
+          <span class="eyebrow">Русский язык · 4 класс</span>
+          <h1>Падежи имени существительного</h1>
+          <p class="lead">Тренируй вопросы, слова-помощники, предлоги и учись различать трудные падежные формы. Работай спокойно: здесь можно думать, пробовать и исправляться.</p>
+          <p class="author-line">Автор тренажёра — <strong>Ольга Филинова</strong></p>
+          <div class="start-card">
+            <h3>Как тебя зовут?</h3>
+            <input id="studentName" class="name-input" type="text" autocomplete="name" maxlength="40" placeholder="Напиши своё имя" />
+            <button id="startBtn" class="primary" type="button">Начать тренировку</button>
+            <div id="nameError" class="error-text"></div>
+          </div>
+        </div>
+        <div class="illustration" aria-hidden="true">
+          <div class="big">📝</div>
+          <div class="sticker s1">кто? что?</div>
+          <div class="sticker s2">кого? чего?</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menuScreen" class="screen">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Маршрут тренировки</span>
+          <h2>Выбери блок</h2>
+          <p class="section-sub">Можно проходить в любом порядке. Рекомендуемый маршрут идёт слева направо.</p>
+        </div>
+        <button id="changeNameBtn" class="secondary" type="button">Сменить имя</button>
+      </div>
+      <div id="menuGrid" class="menu-grid"></div>
+    </section>
+
+    <section id="trainerScreen" class="screen">
+      <div class="trainer-shell">
+        <div class="trainer-head">
+          <div id="trainerTitle" class="trainer-title"></div>
+          <div class="progress-wrap">
+            <div class="progress-meta"><span id="progressText"></span><span id="phaseText"></span></div>
+            <div class="progress"><div id="progressBar"></div></div>
+          </div>
+        </div>
+        <div id="trainerBody" class="trainer-body"></div>
+      </div>
+    </section>
+  </main>
+  <div class="footer-note"><strong>Автор: Ольга Филинова</strong><br>Тренажёр сохраняет результаты на этом устройстве и после настройки может отправлять их учителю в Google Таблицу.</div>
+</div>
+
+<script>
+const CONFIG = {
+  GAS_URL: 'https://script.google.com/macros/s/AKfycbw_m2SGDfYGQcCYCkXQPxOljFbjsBqhxj0ZAGf75LwET3NoaVYdq18un50Za2G887IDIA/exec',
+  API_TOKEN: '_bHISMz1zIrscq7n4XSu1aYs'
+};
+
+const BLOCKS = [
+  {
+    id:'nom', short:'И. п.', title:'Именительный падеж', icon:'☀️', desc:'Кто или что выполняет действие?',
+    passport:{helper:'есть', questions:'кто? что?', preps:'без предлога', note:'Именительный падеж — начальная форма имени существительного. В наших заданиях существительное в И. п. называет того, кто или что выполняет действие.'},
+    tasks:[
+      q('nom1','passport','Какие вопросы у именительного падежа?', ['кто? что?','кого? чего?','кому? чему?','кем? чем?'],'кто? что?','Вспомни: И. п. называет предмет в начальной форме.'),
+      q('nom2','passport','Какое слово-помощник у именительного падежа?', ['есть','нет','дать','вижу'],'есть','Проверь сочетание: есть кто? есть что?'),
+      q('nom3','passport','Как записываем предлоги для именительного падежа?', ['без предлога','к, по','в, на','с, над'],'без предлога','В нашем паспорте И. п. отмечаем: без предлога.'),
+      q('nom4','practice','В предложении «Светит солнце.» какое существительное стоит в И. п.?',['солнце','светит','нет существительного'],'солнце','Спроси: что светит?'),
+      q('nom5','practice','В предложении «Лает собака.» какое существительное стоит в И. п.?',['собака','лает','оба слова'],'собака','Спроси: кто лает?'),
+      q('nom6','practice','Найди существительное в И. п.: «Ветер качает дерево.»',['ветер','дерево','оба существительных'],'ветер','Кто или что выполняет действие «качает»?'),
+      q('nom7','practice','Найди существительное в И. п.: «Девочка читает книгу.»',['девочка','книгу','оба существительных'],'девочка','Кто выполняет действие?'),
+      q('nom8','mini','Мини-проверка: «Котёнок ловит мяч.» Что стоит в И. п.?',['котёнок','мяч','оба слова'],'котёнок',''),
+      q('nom9','mini','Мини-проверка: «Мороз сковал пруд.» Что стоит в И. п.?',['мороз','пруд','оба слова'],'мороз',''),
+      q('nom10','mini','Мини-проверка: «Корабль покинул порт.» Что стоит в И. п.?',['корабль','порт','оба слова'],'корабль','')
+    ]
+  },
+  {
+    id:'gen', short:'Р. п.', title:'Родительный падеж', icon:'🍂', desc:'Нет кого? нет чего?',
+    passport:{helper:'нет', questions:'кого? чего?', preps:'от, у, с, для, возле, около, без, до, из-за, из, вокруг', note:'Определяй падеж по вопросу от глагола к существительному и учитывай предлог, если он есть.'},
+    tasks:[
+      q('gen1','passport','Какие вопросы у родительного падежа?',['кого? чего?','кому? чему?','кого? что?','кем? чем?'],'кого? чего?','Слово-помощник «нет»: нет кого? нет чего?'),
+      q('gen2','passport','Какое слово-помощник у родительного падежа?',['нет','есть','дать','доволен'],'нет','Нет кого? Нет чего?'),
+      q('gen3','passport','Какой ряд предлогов относится к Р. п.?',['от, у, с, без, до, из, около','к, по','в, на, за, через','с, над, под, перед'],'от, у, с, без, до, из, около','Вспомни: выйти из дома, отойти от окна, дойти до школы.'),
+      q('gen4','practice','Определи падеж выделенного существительного: «бояться грозы».',['Р. п.','Д. п.','В. п.','Т. п.'],'Р. п.','Бояться чего? грозы.'),
+      q('gen5','practice','Какой вопрос ставим: «испугаться собаки»?',['кого?','кому?','кем?','о ком?'],'кого?','Испугаться кого? собаки.'),
+      q('gen6','practice','Выбери правильное продолжение: «выйти …».',['из дома','к дому','домом','в доме'],'из дома','Выйти из чего? из дома.'),
+      q('gen7','practice','Выбери форму: «дойти до …».',['школы','школе','школу','школой'],'школы','До чего? до школы.'),
+      q('gen8','mini','Мини-проверка: где Р. п.?',['отказаться от помощи','помочь другу','увидеть друга','гордиться другом'],'отказаться от помощи',''),
+      q('gen9','mini','Мини-проверка: где Р. п.?',['выйти из леса','идти по лесу','войти в лес','лететь над лесом'],'выйти из леса',''),
+      q('gen10','mini','Мини-проверка: выбери Р. п.',['пройти около дома','подойти к дому','увидеть дом','жить в доме'],'пройти около дома','')
+    ]
+  },
+  {
+    id:'dat', short:'Д. п.', title:'Дательный падеж', icon:'🎁', desc:'Дать кому? чему?',
+    passport:{helper:'дать', questions:'кому? чему?', preps:'к, по', note:'В дательном падеже чередуются примеры без предлога и с предлогами к, по.'},
+    tasks:[
+      q('dat1','passport','Какие вопросы у дательного падежа?',['кому? чему?','кого? чего?','кого? что?','кем? чем?'],'кому? чему?','Дать кому? чему?'),
+      q('dat2','passport','Какое слово-помощник у дательного падежа?',['дать','нет','вижу','думаю'],'дать','Дать кому? Дать чему?'),
+      q('dat3','passport','Какие предлоги характерны для Д. п.?',['к, по','от, из','в, на','с, над'],'к, по','Подойти к дому, идти по дороге.'),
+      q('dat4','practice','Определи падеж: «помочь другу».',['Д. п.','Р. п.','В. п.','Т. п.'],'Д. п.','Помочь кому? другу.'),
+      q('dat5','practice','Какой вопрос ставим: «радоваться подарку»?',['чему?','чего?','что?','чем?'],'чему?','Радоваться чему? подарку.'),
+      q('dat6','practice','Выбери правильное продолжение: «подойти …».',['к окну','из окна','окно','окном'],'к окну','Подойти к чему? к окну.'),
+      q('dat7','practice','Выбери форму: «позвонить …».',['маме','маму','мамой','мамы'],'маме','Позвонить кому? маме.'),
+      q('dat8','mini','Мини-проверка: где Д. п.?',['написать учителю','увидеть учителя','гордиться учителем','говорить об учителе'],'написать учителю',''),
+      q('dat9','mini','Мини-проверка: где Д. п.?',['идти по дороге','перейти дорогу','отойти от дороги','любоваться дорогой'],'идти по дороге',''),
+      q('dat10','mini','Мини-проверка: выбери Д. п.',['стучать по столу','положить на стол','стоять перед столом','говорить о столе'],'стучать по столу','')
+    ]
+  },
+  {
+    id:'acc', short:'В. п.', title:'Винительный падеж', icon:'👀', desc:'Вижу кого? что?',
+    passport:{helper:'вижу / видеть', questions:'кого? что?', preps:'в (во), на, за, через, про', note:'Винительный падеж часто называет предмет, на который направлено действие.'},
+    tasks:[
+      q('acc1','passport','Какие вопросы у винительного падежа?',['кого? что?','кого? чего?','кому? чему?','кем? чем?'],'кого? что?','Вижу кого? Вижу что?'),
+      q('acc2','passport','Какое слово-помощник у винительного падежа?',['вижу','нет','дать','доволен'],'вижу','Вижу кого? Вижу что?'),
+      q('acc3','passport','Какой ряд предлогов относится к В. п.?',['в, на, за, через, про','от, из, около','к, по','с, над, перед'],'в, на, за, через, про','Войти в школу, смотреть на картину, перейти через мост.'),
+      q('acc4','practice','Определи падеж: «читать книгу».',['В. п.','Р. п.','Д. п.','П. п.'],'В. п.','Читать что? книгу.'),
+      q('acc5','practice','Какой вопрос ставим: «увидеть друга»?',['кого?','кому?','кем?','о ком?'],'кого?','Увидеть кого? друга.'),
+      q('acc6','practice','Выбери правильное продолжение: «войти …».',['в школу','из школы','к школе','в школе'],'в школу','Войти во что? в школу.'),
+      q('acc7','practice','Выбери форму: «позвать …».',['сестру','сестры','сестре','сестрой'],'сестру','Позвать кого? сестру.'),
+      q('acc8','mini','Мини-проверка: где В. п.?',['перейти дорогу','идти по дороге','отойти от дороги','любоваться дорогой'],'перейти дорогу',''),
+      q('acc9','mini','Мини-проверка: где В. п.?',['рассказывать про поездку','отказаться от поездки','радоваться поездке','говорить о поездке'],'рассказывать про поездку',''),
+      q('acc10','mini','Мини-проверка: выбери В. п.',['перейти через мост','идти по мосту','стоять перед мостом','говорить о мосте'],'перейти через мост','')
+    ]
+  },
+  {
+    id:'nom_acc', short:'И. ↔ В.', title:'Именительный или винительный?', icon:'⚖️', desc:'Кто действует; на кого или на что направлено действие', special:true,
+    passport:{helper:'', questions:'И. п.: кто? что? · В. п.: кого? что?', preps:'', note:'И. п. называет того, кто или что выполняет действие. В. п. — того или то, на кого или на что направлено действие.'},
+    tasks:[
+      q('na1','practice','«Ветер качает дуб.» Что стоит в И. п.?',['ветер','дуб','оба слова'],'ветер','Что выполняет действие «качает»?'),
+      q('na2','practice','«Ветер качает дуб.» Что стоит в В. п.?',['дуб','ветер','оба слова'],'дуб','Качает что? дуб.'),
+      q('na3','practice','«Дождь намочил асфальт.» Что стоит в И. п.?',['дождь','асфальт','оба слова'],'дождь','Что выполняет действие?'),
+      q('na4','practice','«Мороз сковал пруд.» Что стоит в В. п.?',['пруд','мороз','оба слова'],'пруд','Сковал что? пруд.'),
+      q('na5','practice','Почему в предложении «Корабль покинул порт.» слово «порт» — В. п.?',['действие направлено на порт','порт выполняет действие','у слова есть предлог'],'действие направлено на порт','Покинул что? порт.'),
+      q('na6','mini','Мини-проверка: «Самолёт пересёк океан.» Выбери пару И. п. → В. п.',['самолёт → океан','океан → самолёт','самолёт → самолёт'],'самолёт → океан',''),
+      q('na7','mini','Мини-проверка: «Мальчик открыл шкаф.» Выбери пару И. п. → В. п.',['мальчик → шкаф','шкаф → мальчик','мальчик → мальчик'],'мальчик → шкаф',''),
+      q('na8','mini','Мини-проверка: «Снег укрыл двор.» Что стоит в В. п.?',['двор','снег','оба слова'],'двор','')
+    ]
+  },
+  {
+    id:'acc_gen', short:'В. ↔ Р.', title:'Винительный или родительный?', icon:'🦊', desc:'Если форма совпала — зовём лису.', special:true, foxBlock:true,
+    passport:{helper:'лису → В. п. · лисы → Р. п.', questions:'В. п.: кого? что? · Р. п.: кого? чего?', preps:'', note:'Замени сомнительное существительное словом «лиса», сохраняя глагол. Получилось «лису» — В. п.; «лисы» — Р. п.'},
+    tasks:[
+      foxq('ag1','practice','Определи падеж: «увидеть брата».',['В. п.','Р. п.'],'В. п.','увидеть лису → В. п.','брата'),
+      foxq('ag2','practice','Определи падеж: «бояться брата».',['В. п.','Р. п.'],'Р. п.','бояться лисы → Р. п.','брата'),
+      foxq('ag3','practice','Определи падеж: «встретить друга».',['В. п.','Р. п.'],'В. п.','встретить лису → В. п.','друга'),
+      foxq('ag4','practice','Определи падеж: «избегать мальчика».',['В. п.','Р. п.'],'Р. п.','избегать лисы → Р. п.','мальчика'),
+      foxq('ag5','practice','Определи падеж: «испугаться щенка».',['В. п.','Р. п.'],'Р. п.','испугаться лисы → Р. п.','щенка'),
+      foxq('ag6','mini','Мини-проверка: «потрогать журавля».',['В. п.','Р. п.'],'В. п.','потрогать лису → В. п.','журавля'),
+      foxq('ag7','mini','Мини-проверка: «разглядеть барана».',['В. п.','Р. п.'],'В. п.','разглядеть лису → В. п.','барана'),
+      foxq('ag8','mini','Мини-проверка: «выследить волка».',['В. п.','Р. п.'],'В. п.','выследить лису → В. п.','волка'),
+      foxq('ag9','mini','Мини-проверка: «повстречать медведя».',['В. п.','Р. п.'],'В. п.','повстречать лису → В. п.','медведя'),
+      foxq('ag10','mini','Мини-проверка: «погнать зайца».',['В. п.','Р. п.'],'В. п.','погнать лису → В. п.','зайца')
+    ]
+  },
+  {
+    id:'ins', short:'Т. п.', title:'Творительный падеж', icon:'✏️', desc:'Доволен кем? чем?',
+    passport:{helper:'доволен', questions:'кем? чем?', preps:'перед, над, с, за, под', note:'Чередуй примеры без предлога и с предлогами.'},
+    tasks:[
+      q('ins1','passport','Какие вопросы у творительного падежа?',['кем? чем?','кому? чему?','кого? что?','о ком? о чём?'],'кем? чем?','Доволен кем? Доволен чем?'),
+      q('ins2','passport','Какое слово-помощник у творительного падежа?',['доволен','дать','вижу','думаю'],'доволен','Доволен кем? чем?'),
+      q('ins3','passport','Какой ряд предлогов относится к Т. п.?',['перед, над, с, за, под','к, по','в, на, про','от, из, около'],'перед, над, с, за, под','Стоять перед домом, лететь над лесом.'),
+      q('ins4','practice','Определи падеж: «гордиться братом».',['Т. п.','В. п.','Д. п.','П. п.'],'Т. п.','Гордиться кем? братом.'),
+      q('ins5','practice','Какой вопрос ставим: «рисовать карандашом»?',['чем?','что?','чему?','чего?'],'чем?','Рисовать чем? карандашом.'),
+      q('ins6','practice','Выбери правильное продолжение: «лететь …».',['над лесом','в лес','из леса','о лесе'],'над лесом','Лететь над чем? над лесом.'),
+      q('ins7','practice','Выбери форму: «любоваться …».',['закатом','закат','закату','о закате'],'закатом','Любоваться чем? закатом.'),
+      q('ins8','mini','Мини-проверка: где Т. п.?',['играть с другом','увидеть друга','помочь другу','говорить о друге'],'играть с другом',''),
+      q('ins9','mini','Мини-проверка: где Т. п.?',['стоять перед домом','войти в дом','выйти из дома','жить в доме'],'стоять перед домом',''),
+      q('ins10','mini','Мини-проверка: выбери Т. п.',['писать ручкой','взять ручку','нет ручки','говорить о ручке'],'писать ручкой','')
+    ]
+  },
+  {
+    id:'prep', short:'П. п.', title:'Предложный падеж', icon:'💭', desc:'Думаю о ком? о чём? Где? Когда?',
+    passport:{helper:'думаю', questions:'о ком? о чём? где? когда?', preps:'о (об), в (во), на', note:'Предложный падеж употребляется только с предлогами.'},
+    tasks:[
+      q('prep1','passport','Какие вопросы оставляем в паспорте предложного падежа?',['о ком? о чём? где? когда?','кого? чего?','кому? чему?','кем? чем?'],'о ком? о чём? где? когда?','В предложном падеже дополнительно используем вопросы «где? когда?».'),
+      q('prep2','passport','Какое слово-помощник у предложного падежа?',['думаю','вижу','нет','доволен'],'думаю','Думаю о ком? о чём?'),
+      q('prep3','passport','Какие предлоги используем в паспорте П. п.?',['о (об), в (во), на','к, по','от, из, около','перед, над, с'],'о (об), в (во), на','Предложный падеж употребляется только с предлогами.'),
+      q('prep4','practice','Определи падеж: «говорить о друге».',['П. п.','В. п.','Д. п.','Т. п.'],'П. п.','Говорить о ком? о друге.'),
+      q('prep5','practice','Какой вопрос ставим: «думать о поездке»?',['о чём?','чего?','чему?','чем?'],'о чём?','Думать о чём? о поездке.'),
+      q('prep6','practice','Выбери правильное продолжение: «жить …».',['в городе','в город','из города','городом'],'в городе','Жить где? в городе.'),
+      q('prep7','practice','Сравни: где П. п.?',['учиться в школе','войти в школу','выйти из школы','подойти к школе'],'учиться в школе','Учиться где? в школе.'),
+      q('prep8','mini','Мини-проверка: где П. п.?',['лежать на столе','положить на стол','стоять перед столом','отойти от стола'],'лежать на столе',''),
+      q('prep9','mini','Мини-проверка: где П. п.?',['отдыхать на море','поехать на море','любоваться морем','говорить про море'],'отдыхать на море',''),
+      q('prep10','mini','Мини-проверка: выбери П. п.',['рассказывать об экскурсии','ехать на экскурсию','вернуться с экскурсии','готовиться к экскурсии'],'рассказывать об экскурсии','')
+    ]
+  }
+];
+
+function q(id, phase, prompt, options, answer, hint, target=''){
+  return {id, phase, type:'choice', prompt, options, answer, hint, target, fox:false};
+}
+function foxq(id, phase, prompt, options, answer, foxText, target=''){
+  return {id, phase, type:'choice', prompt, options, answer, hint:'', target, fox:true, foxText};
+}
+
+const state = {
+  student:'', currentBlock:null, taskIndex:0, taskStart:0, blockStart:0,
+  answers:[], sound:true, taskAttempts:0, taskHintUsed:false, taskFoxUsed:false,
+  taskFinished:false, sessionId:''
+};
+
+const $ = s => document.querySelector(s);
+const screens = ['#startScreen','#menuScreen','#trainerScreen'];
+
+function showScreen(sel){ screens.forEach(s=>$(s).classList.toggle('active',s===sel)); window.scrollTo({top:0,behavior:'smooth'}); }
+function esc(s){ return String(s??'').replace(/[&<>'"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
+function nowIso(){ return new Date().toISOString(); }
+function uid(){ return 's_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2,10); }
+function endpointReady(){ return CONFIG.GAS_URL && !CONFIG.GAS_URL.includes('PASTE_YOUR'); }
+function deviceType(){ const ua=navigator.userAgent||''; if(/iPad|Tablet/i.test(ua))return 'tablet'; if(/Mobi|Android|iPhone/i.test(ua))return 'mobile'; return 'desktop'; }
+function fmtDuration(sec){ const m=Math.floor(sec/60), s=sec%60; return m?`${m} мин ${s} сек`:`${s} сек`; }
+function playCorrect(){ if(!state.sound)return; try{ const ac=new (window.AudioContext||window.webkitAudioContext)(); const o=ac.createOscillator(); const g=ac.createGain(); o.type='sine'; o.frequency.setValueAtTime(520,ac.currentTime); o.frequency.exponentialRampToValueAtTime(720,ac.currentTime+.12); g.gain.setValueAtTime(.04,ac.currentTime); g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+.18); o.connect(g); g.connect(ac.destination); o.start(); o.stop(ac.currentTime+.18);}catch(e){} }
+
+function loadProgress(){ try{return JSON.parse(localStorage.getItem('casesProgress:'+state.student)||'{}')}catch(e){return{}} }
+function saveBlockProgress(blockId, result){ const p=loadProgress(); p[blockId]={percent:result.finalPct, firstPct:result.firstPct, at:Date.now()}; localStorage.setItem('casesProgress:'+state.student,JSON.stringify(p)); }
+
+function renderMenu(){
+  $('#studentChip').textContent=state.student; $('#studentChip').classList.remove('hidden'); $('#menuBtn').classList.add('hidden');
+  const progress=loadProgress();
+  $('#menuGrid').innerHTML=BLOCKS.map((b,i)=>{
+    const p=progress[b.id];
+    const status=p?`✓ Пройдено: ${p.percent}% · с первого раза ${p.firstPct}%`:`Блок ${i+1} из ${BLOCKS.length}`;
+    return `<article class="block-card">
+      <div class="block-top"><div class="block-icon">${b.icon}</div><div class="case-chip">${esc(b.short)}</div></div>
+      <div><h3>${esc(b.title)}</h3><div class="block-desc">${esc(b.desc)}</div></div>
+      <div class="status ${p?'done':''}">${status}</div>
+      <button class="primary block-action" data-block="${b.id}" type="button">${p?'Пройти ещё раз':'Начать'}</button>
+    </article>`;
+  }).join('');
+  document.querySelectorAll('[data-block]').forEach(btn=>btn.addEventListener('click',()=>startBlock(btn.dataset.block)));
+}
+
+function startBlock(id){
+  const block=BLOCKS.find(b=>b.id===id); if(!block)return;
+  state.currentBlock=block; state.taskIndex=-1; state.answers=[]; state.blockStart=Date.now(); state.sessionId=uid();
+  $('#trainerTitle').textContent=block.title; $('#menuBtn').classList.remove('hidden');
+  showScreen('#trainerScreen'); renderIntro();
+}
+
+function renderIntro(){
+  const b=state.currentBlock;
+  $('#progressText').textContent='Паспорт падежа'; $('#phaseText').textContent='Теория'; $('#progressBar').style.width='0%';
+  const extra=b.foxBlock?`<div class="fox-box show"><div class="fox-face">🦊</div><strong>Лиса-помощница</strong><div>Замени сомнительное существительное словом <b>лиса</b>, сохраняя глагол.</div><div class="fox-rule"><span class="fox-pill">лисУ → В. п.</span><span class="fox-pill">лисЫ → Р. п.</span></div></div>`:'';
+  $('#trainerBody').innerHTML=`
+    <span class="eyebrow">${esc(b.short)}</span><h2>${esc(b.title)}</h2>
+    <p class="lead">${esc(b.desc)}</p>
+    <div class="passport">
+      ${b.passport.helper?`<div class="passport-card"><strong>Слово-помощник</strong><span>${esc(b.passport.helper)}</span></div>`:''}
+      <div class="passport-card"><strong>Вопросы</strong><span>${esc(b.passport.questions)}</span></div>
+      ${b.passport.preps?`<div class="passport-card full"><strong>Предлоги</strong><span>${esc(b.passport.preps)}</span></div>`:''}
+    </div>
+    <div class="note">${esc(b.passport.note)}</div>${extra}
+    <div class="task-tools"><div></div><div class="tool-right"><button id="introNext" class="primary" type="button">Перейти к заданиям</button></div></div>`;
+  $('#introNext').addEventListener('click',()=>{state.taskIndex=0;renderTask();});
+}
+
+function shuffleOptions(options){
+  const arr=[...options];
+  for(let i=arr.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+
+function renderTask(){
+  const b=state.currentBlock, t=b.tasks[state.taskIndex];
+  state.taskStart=Date.now(); state.taskAttempts=0; state.taskHintUsed=false; state.taskFoxUsed=false; state.taskFinished=false;
+  const n=state.taskIndex+1, total=b.tasks.length, pct=Math.round((state.taskIndex/total)*100);
+  $('#progressText').textContent=`Задание ${n} из ${total}`;
+  $('#phaseText').innerHTML=t.phase==='mini'?`Мини-проверка`:(t.phase==='passport'?'Паспорт':'Тренировка');
+  $('#progressBar').style.width=pct+'%';
+  const hintAllowed=t.phase!=='mini' && !!t.hint;
+  const foxAllowed=!!t.fox;
+  $('#trainerBody').innerHTML=`
+    <div class="task-kicker">${t.phase==='mini'?'Проверяем без обычных подсказок':t.phase==='passport'?'Собираем паспорт':'Тренируемся'} ${t.phase==='mini'?'<span class="mini-tag">контроль</span>':''}</div>
+    <div class="task-question">${esc(t.prompt)}</div>
+    <div id="options" class="options">${shuffleOptions(t.options).map(o=>`<button class="option" type="button" data-opt="${esc(o)}">${esc(o)}</button>`).join('')}</div>
+    <div id="feedback" class="feedback"></div>
+    ${hintAllowed?`<div id="hintBox" class="hint-box"><strong>Подсказка:</strong> ${esc(t.hint)}</div>`:''}
+    ${foxAllowed?`<div id="foxBox" class="fox-box"><div class="fox-face">🦊</div><strong>Позвали лису</strong><div>${esc(t.foxText)}</div><div class="fox-rule"><span class="fox-pill">лисУ → В. п.</span><span class="fox-pill">лисЫ → Р. п.</span></div></div>`:''}
+    <div class="task-tools">
+      <div class="tool-left">
+        ${hintAllowed?'<button id="hintBtn" class="secondary" type="button">? Подсказка</button>':''}
+        ${foxAllowed?'<button id="foxBtn" class="secondary" type="button">🦊 Позвать лису</button>':''}
+      </div>
+      <div class="tool-right"><button id="nextBtn" class="primary hidden" type="button">Дальше</button></div>
+    </div>`;
+  document.querySelectorAll('.option').forEach(btn=>btn.addEventListener('click',()=>chooseAnswer(btn.dataset.opt)));
+  if(hintAllowed) $('#hintBtn').addEventListener('click',()=>{state.taskHintUsed=true;$('#hintBox').classList.add('show');});
+  if(foxAllowed) $('#foxBtn').addEventListener('click',()=>{state.taskFoxUsed=true;$('#foxBox').classList.add('show');});
+  $('#nextBtn').addEventListener('click',nextTask);
+}
+
+function chooseAnswer(value){
+  if(state.taskFinished)return;
+  const b=state.currentBlock,t=b.tasks[state.taskIndex], btns=[...document.querySelectorAll('.option')];
+  state.taskAttempts++;
+  const correct=value===t.answer;
+  const feedback=$('#feedback');
+  if(correct){
+    btns.forEach(btn=>{btn.disabled=true;if(btn.dataset.opt===t.answer)btn.classList.add('correct');});
+    feedback.className='feedback show ok'; feedback.textContent=state.taskAttempts===1?'Верно! Отличная работа.':'Верно! Ты исправил ответ.';
+    playCorrect(); finishTask(true,value); return;
+  }
+  const clicked=btns.find(b=>b.dataset.opt===value); if(clicked){clicked.classList.add('wrong');clicked.disabled=true;}
+  if(t.phase==='mini'){
+    btns.forEach(btn=>{btn.disabled=true;if(btn.dataset.opt===t.answer)btn.classList.add('correct');});
+    feedback.className='feedback show bad'; feedback.innerHTML=`Пока нет. Правильный ответ: <b>${esc(t.answer)}</b>.`;
+    finishTask(false,value); return;
+  }
+  if(state.taskAttempts===1){
+    feedback.className='feedback show bad'; feedback.textContent='Попробуй ещё раз.';
+  }else{
+    btns.forEach(btn=>{btn.disabled=true;if(btn.dataset.opt===t.answer)btn.classList.add('correct');});
+    feedback.className='feedback show info'; feedback.innerHTML=`Посмотри на правило. Правильный ответ: <b>${esc(t.answer)}</b>.`;
+    if(t.hint && $('#hintBox')){state.taskHintUsed=true;$('#hintBox').classList.add('show');}
+    finishTask(false,value);
+  }
+}
+
+function finishTask(finalCorrect, studentAnswer){
+  if(state.taskFinished)return; state.taskFinished=true;
+  const t=state.currentBlock.tasks[state.taskIndex];
+  const sec=Math.max(1,Math.round((Date.now()-state.taskStart)/1000));
+  state.answers.push({
+    task_id:t.id, task_type:t.phase, question:t.prompt, target_word:t.target||'', correct_answer:t.answer,
+    student_answer:studentAnswer, final_correct:finalCorrect, first_try_correct:finalCorrect && state.taskAttempts===1,
+    attempts:state.taskAttempts, hint_used:state.taskHintUsed, fox_used:state.taskFoxUsed, time_spent:sec
+  });
+  $('#nextBtn').classList.remove('hidden');
+}
+
+function nextTask(){
+  const b=state.currentBlock;
+  if(state.taskIndex<b.tasks.length-1){ state.taskIndex++; renderTask(); }
+  else finishBlock();
+}
+
+function finishBlock(){
+  const b=state.currentBlock;
+  const finished=Date.now(), duration=Math.round((finished-state.blockStart)/1000), total=b.tasks.length;
+  const finalCorrect=state.answers.filter(a=>a.final_correct).length;
+  const firstCorrect=state.answers.filter(a=>a.first_try_correct).length;
+  const hints=state.answers.filter(a=>a.hint_used).length;
+  const foxCount=state.answers.filter(a=>a.fox_used).length;
+  const errors=total-firstCorrect;
+  const finalPct=Math.round(finalCorrect/total*100), firstPct=Math.round(firstCorrect/total*100);
+  const payload={
+    token:CONFIG.API_TOKEN, session_id:state.sessionId, student_name:state.student, block_id:b.id, block_name:b.title,
+    started_at:new Date(state.blockStart).toISOString(), finished_at:new Date(finished).toISOString(), duration_sec:duration,
+    total_tasks:total, final_correct:finalCorrect, first_try_correct:firstCorrect, final_pct:finalPct, first_try_pct:firstPct,
+    errors, hints_used:hints, fox_used:foxCount>0, fox_count:foxCount, device:deviceType(), user_agent:navigator.userAgent,
+    answers:state.answers
+  };
+  saveBlockProgress(b.id,{finalPct,firstPct});
+  queueAndSend(payload).then(status=>renderSummary(payload,status));
+}
+
+function renderSummary(p,status){
+  $('#progressText').textContent='Готово'; $('#phaseText').textContent='Итог'; $('#progressBar').style.width='100%';
+  const nextIndex=BLOCKS.findIndex(b=>b.id===p.block_id)+1; const hasNext=nextIndex<BLOCKS.length;
+  const foxKpi=state.currentBlock.foxBlock?`<div class="kpi"><strong>${p.fox_count}</strong><span>раз позвали лису</span></div>`:'';
+  $('#trainerBody').innerHTML=`
+    <span class="eyebrow">Итог блока</span><h2>Отличная работа, ${esc(state.student)}!</h2>
+    <div class="summary">
+      <div class="summary-card">
+        <h3>${esc(p.block_name)}</h3>
+        <div class="kpi-grid">
+          <div class="kpi"><strong>${p.final_correct}/${p.total_tasks}</strong><span>верно в итоге</span></div>
+          <div class="kpi"><strong>${p.first_try_pct}%</strong><span>с первого раза</span></div>
+          <div class="kpi"><strong>${p.hints_used}</strong><span>обычных подсказок</span></div>
+          <div class="kpi"><strong>${fmtDuration(p.duration_sec)}</strong><span>время работы</span></div>${foxKpi}
+        </div>
+        <div class="send-status">${esc(status)}</div>
+      </div>
+      <div class="summary-card"><h3>Что запомнить</h3>${summaryTips(p.block_id)}</div>
+    </div>
+    <div class="summary-actions">
+      <button id="againBtn" class="secondary" type="button">Пройти ещё раз</button>
+      <button id="toMenuBtn" class="secondary" type="button">Все падежи</button>
+      ${hasNext?'<button id="nextBlockBtn" class="primary" type="button">Следующий блок</button>':''}
+    </div>`;
+  $('#againBtn').addEventListener('click',()=>startBlock(p.block_id));
+  $('#toMenuBtn').addEventListener('click',()=>{renderMenu();showScreen('#menuScreen');});
+  if(hasNext)$('#nextBlockBtn').addEventListener('click',()=>startBlock(BLOCKS[nextIndex].id));
+}
+
+function summaryTips(id){
+  const map={
+    nom:['И. п.: кто? что?','Слово-помощник: есть','В наших заданиях И. п. называет того, кто или что выполняет действие.'],
+    gen:['Р. п.: кого? чего?','Слово-помощник: нет','Предлоги: от, у, с, для, возле, около, без, до, из-за, из, вокруг.'],
+    dat:['Д. п.: кому? чему?','Слово-помощник: дать','Предлоги: к, по. Есть и примеры без предлога.'],
+    acc:['В. п.: кого? что?','Слово-помощник: вижу','Предлоги: в (во), на, за, через, про.'],
+    nom_acc:['И. п. — кто или что выполняет действие.','В. п. — на кого или на что направлено действие.','Если формы одинаковые, смотри на роль слова в предложении.'],
+    acc_gen:['Если вопрос «кого?» не помогает, замени существительное словом «лиса».','лисУ → В. п.','лисЫ → Р. п.'],
+    ins:['Т. п.: кем? чем?','Слово-помощник: доволен','Предлоги: перед, над, с, за, под.'],
+    prep:['П. п.: о ком? о чём? где? когда?','Слово-помощник: думаю','Предлоги: о (об), в (во), на. Только с предлогами.']
+  };
+  return `<ul class="tips-list">${(map[id]||[]).map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`;
+}
+
+async function queueAndSend(payload){
+  const key='casesPendingResults';
+  let q=[]; try{q=JSON.parse(localStorage.getItem(key)||'[]')}catch(e){}
+  if(!q.some(x=>x.session_id===payload.session_id))q.push(payload);
+  localStorage.setItem(key,JSON.stringify(q));
+  if(!endpointReady())return 'Результат сохранён на устройстве. Чтобы отправлять данные в Google Таблицу, укажите URL веб-приложения Apps Script в файле тренажёра.';
+  const ok=await flushPending();
+  return ok?'Результат отправлен в Google Таблицу.':'Интернет или таблица сейчас недоступны. Результат сохранён на устройстве и будет отправлен при следующей попытке.';
+}
+
+async function flushPending(){
+  if(!endpointReady())return false;
+  const key='casesPendingResults'; let q=[]; try{q=JSON.parse(localStorage.getItem(key)||'[]')}catch(e){return false}
+  if(!q.length)return true;
+  const remain=[]; let anySent=false;
+  for(const item of q){
+    try{
+      await fetch(CONFIG.GAS_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(item)});
+      anySent=true;
+    }catch(e){remain.push(item)}
+  }
+  localStorage.setItem(key,JSON.stringify(remain));
+  return anySent && remain.length===0;
+}
+
+$('#startBtn').addEventListener('click',()=>{
+  const name=$('#studentName').value.trim().replace(/\s+/g,' ');
+  if(!name){$('#nameError').textContent='Сначала напиши своё имя.';$('#studentName').focus();return;}
+  state.student=name; $('#nameError').textContent=''; renderMenu(); showScreen('#menuScreen'); flushPending();
+});
+$('#studentName').addEventListener('keydown',e=>{if(e.key==='Enter')$('#startBtn').click();});
+$('#changeNameBtn').addEventListener('click',()=>{state.student='';$('#studentName').value='';$('#studentChip').classList.add('hidden');$('#menuBtn').classList.add('hidden');showScreen('#startScreen');$('#studentName').focus();});
+$('#menuBtn').addEventListener('click',()=>{renderMenu();showScreen('#menuScreen');});
+$('#soundBtn').addEventListener('click',()=>{state.sound=!state.sound;$('#soundBtn').textContent=state.sound?'🔊':'🔇';});
+
+window.addEventListener('online',()=>flushPending());
+</script>
+</body>
+</html>
